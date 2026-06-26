@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">Teacher Dashboard</h1>
+    <p class="muted" style="margin-bottom: 20px;">
+        Welcome, <strong>{{session.username}}</strong>👋
+    </p>
+
+    <!-- Action bar -->
+    <div class="section-header">
+        <a class="btn primary" href="{{ url_for('upload_book') }}">
+            + Upload Book
+        </a>
+    </div>
+
+    <!-- Search bar -->
+    <input
+        type="text"
+        class="search-input"
+        placeholder="Search books by title or author..."
+        onkeyup="filterBooks()"
+    >
+
+    <div class="grid">
+        {% for book in books %}
+            <div class="card book-card">
+                <h3 class="book-title">{{ book.title }}</h3>
+                <p class="muted book-author">Author: {{ book.author }}</p>
+
+                <a class="btn" href="{{ url_for('download_book', filename=book.filename) }}">
+                    Download
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+
+</div>
+
+<script>
+function filterBooks() {
+    const input = document.querySelector(".search-input").value.toLowerCase();
+    const books = document.querySelectorAll(".book-card");
+
+    books.forEach(book => {
+        const title = book.querySelector(".book-title").innerText.toLowerCase();
+        const author = book.querySelector(".book-author").innerText.toLowerCase();
+        book.style.display =
+            title.includes(input) || author.includes(input) ? "block" : "none";
+    });
+}
+</script>
+
+</body>
+</html>

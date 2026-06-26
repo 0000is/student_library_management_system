@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">Admin Dashboard</h1>
+
+    <p class="muted" style="margin-bottom: 25px;">
+        Welcome back, <strong>{{ session.get('username', 'admin') }}</strong> 👋
+    </p>
+
+    <!-- ================= STATS CARDS ================= -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span>Total Books</span>
+            <h2>{{ books|length }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>Pending Users</span>
+            <h2>{{ users|length }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>Approved Books</span>
+            <h2>{{ books | selectattr('approved') | list | length }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>Teachers</span>
+            <h2>{{ books | length }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <span>Students</span>
+            <h2>{{ users | length }}</h2>
+        </div>
+    </div>
+
+    <!-- ================= ACTIONS ================= -->
+    <div class="section-header" style="margin-top:30px;">
+        <a class="btn primary" href="{{ url_for('admin_add_book') }}">+ Add Book</a>
+    </div>
+
+    <!-- ================= PENDING USERS ================= -->
+    <h2 style="margin-top:30px;">Pending Users</h2>
+
+    {% if users %}
+        <div class="grid">
+            {% for user in users %}
+                <div class="card">
+                    <strong>{{ user.username }}</strong>
+                    <p class="muted">{{ user.role }}</p>
+
+                    <a class="btn success"
+                       href="{{ url_for('approve_user', user_id=user.id) }}">
+                        Approve
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="muted">No pending users</p>
+    {% endif %}
+
+    <!-- ================= BOOKS ================= -->
+    <h2 style="margin-top:40px;">All Books</h2>
+
+    <div class="grid">
+        {% for book in books %}
+            <div class="card">
+                <h3>{{ book.title }}</h3>
+                <p class="muted">Author: {{ book.author }}</p>
+
+                <div class="actions">
+                    {% if not book.approved %}
+                        <a class="btn success"
+                           href="{{ url_for('approve_book', book_id=book.id) }}">
+                            Approve
+                        </a>
+                    {% endif %}
+
+                    <a class="btn"
+                       href="{{ url_for('download_book', filename=book.filename) }}">
+                        Preview
+                    </a>
+
+                    <a class="btn danger"
+                       href="{{ url_for('delete_book', book_id=book.id) }}">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+
+</div>
+
+</body>
+</html>

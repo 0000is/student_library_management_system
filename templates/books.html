@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<div class="container">
+<h2>Library</h2>
+<form>
+<input name="q" placeholder="Search title">
+<button>Search</button>
+</form>
+{% for b in books %}
+<p>{{ b.title }} - {{ b.author }}
+<a href="/download/{{ b.id }}">Download</a></p>
+{% else %}<p>No books</p>{% endfor %}
+<a href="/logout">Logout</a>
+</div>

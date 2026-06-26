@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2>Available Books</h2>
+
+<ul>
+    {% for book in books %}
+        <li>
+            {{ book }}
+            -
+            <a href="/download/{{ book }}">Download</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<br>
+<a href="/login">Logout</a>
+
+</body>
+</html>

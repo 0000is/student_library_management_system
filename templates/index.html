@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Library System</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 15px;
+            border: 1px solid white;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background: white;
+            color: black;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            background: #f39c12;
+            color: white;
+            padding: 12px 25px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .buttons a:hover {
+            background: #e67e22;
+        }
+
+        .features {
+            background: white;
+            color: black;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 30px;
+        }
+
+        .feature-box {
+            display: inline-block;
+            width: 250px;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #f4f4f4;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>E-Library</h2>
+    <div>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>Student E-Library Management System</h1>
+    <p>
+        A smart web-based platform that allows students to access, manage,
+        and receive personalized book recommendations using machine learning.
+    </p>
+
+    <div class="buttons">
+        <a href="/login">Get Started</a>
+        <a href="/register">Create Account</a>
+    </div>
+</div>
+
+<!-- Features -->
+<div class="features">
+    <h2>Key Features</h2>
+
+    <div class="feature-box">
+        <h3>📚 Book Access</h3>
+        <p>Search and access academic materials بسهولة.</p>
+    </div>
+
+    <div class="feature-box">
+        <h3>⬆️ Upload System</h3>
+        <p>Teachers can upload learning resources.</p>
+    </div>
+
+    <div class="feature-box">
+        <h3>🤖 Smart Recommendation</h3>
+        <p>Get personalized book suggestions using AI.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
